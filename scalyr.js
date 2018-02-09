@@ -513,7 +513,7 @@ defineScalyrAngularModule('slyEvaluate', ['gatedScope'])
     },
   };
 })
-.directive('slyPreventEvaluationWhen', ['$parse', function ($parse) {
+.directive('slyEvaluateWhen', ['$parse', function ($parse) {
   return {
     restrict: 'A',
     // We create a new scope just because it helps segment the gated watchers
@@ -524,7 +524,7 @@ defineScalyrAngularModule('slyEvaluate', ['gatedScope'])
         // We need a separate pre-link function because we want to modify the scope before any of the
         // children are passed it.
         pre: function preLink(scope, element, attrs) {
-          var expressionToCheck = $parse(attrs.slyPreventEvaluationWhen);
+          var expressionToCheck = $parse(attrs.slyEvaluateWhen);
 
           scope.$addWatcherGate(function hiddenChecker() {
             // Should only return true if the element is not hidden.
